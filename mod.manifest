@@ -1,0 +1,114 @@
+# OdontoFast - Interface Python para Previsão de Problemas Bucais
+
+Este documento contém instruções sobre como configurar e executar a interface gráfica do sistema OdontoFast para previsão de problemas bucais.
+
+## Requisitos
+
+Para executar a aplicação, você precisa ter o Python instalado junto com as seguintes bibliotecas:
+
+```bash
+pip install streamlit pandas numpy matplotlib seaborn joblib
+```
+
+## Configuração e Execução
+
+### Passo 1: Preparar o modelo
+
+O sistema está configurado para usar automaticamente o modelo salvo no seu notebook com o nome `modelo_problema_bucal.pkl`. Certifique-se de que este arquivo está disponível no mesmo diretório onde você vai executar a interface.
+
+Para salvar o modelo do seu notebook, use o seguinte código:
+
+```python
+import joblib
+
+# Supondo que 'modelo' é sua variável contendo o modelo treinado
+joblib.dump(modelo, 'modelo_problema_bucal.pkl')
+```
+
+**Nota:** Se o arquivo do modelo não for encontrado, a interface funcionará em modo de simulação (útil para testes).
+
+### Passo 2: Salvar o código da interface
+
+Salve o código da interface em um arquivo chamado `app.py`.
+
+### Passo 3: Executar a aplicação
+
+No terminal, navegue até o diretório onde salvou os arquivos e execute:
+
+```bash
+streamlit run app.py
+```
+
+Isso iniciará a aplicação e abrirá automaticamente uma janela do navegador com a interface. Se não abrir automaticamente, você pode acessar manualmente pelo endereço mostrado no terminal (geralmente http://localhost:8501).
+
+## Integrando com seu Notebook
+
+### Opção 1: Executar a partir do Jupyter/Colab
+
+Você pode executar a interface diretamente de dentro do seu notebook utilizando o comando mágico:
+
+```python
+!streamlit run app.py &>/dev/null & echo $! > streamlit.pid
+```
+
+Para parar a execução posteriormente:
+
+```python
+!kill -9 `cat streamlit.pid`
+```
+
+### Opção 2: Google Colab com Ngrok (acesso externo)
+
+Se estiver usando o Google Colab e precisar de acesso externo:
+
+```python
+# Instalar dependências
+!pip install streamlit pyngrok
+
+# Salvar o modelo
+import joblib
+joblib.dump(modelo, 'modelo_problema_bucal.pkl')
+
+# Salvar o código do app
+with open('app.py', 'w') as f:
+    f.write('''
+    # Cole aqui o código completo do arquivo app.py
+    ''')
+
+# Configurar Ngrok para acesso externo
+from pyngrok import ngrok
+!nohup streamlit run app.py &
+url = ngrok.connect(8501)
+print(f"Acesse a interface através do link: {url}")
+```
+
+## Recursos da Interface
+
+A interface inclui:
+
+1. **Formulário para entrada de dados do paciente:**
+   - Dados demográficos (idade, gênero)
+   - Hábitos de higiene bucal
+   - Fatores de risco
+   - Histórico médico
+   - Cuidados preventivos
+
+2. **Painel de resultados:**
+   - Classificação de risco (Alto ou Baixo)
+   - Probabilidade percentual
+   - Recomendações personalizadas
+   - Visualização gráfica dos fatores de risco mais importantes
+
+## Personalização do Modelo
+
+Se você quiser usar um modelo diferente ou modificar como as previsões são feitas, modifique as funções `load_model()` e `predict_risk()` no arquivo `app.py`.
+
+A função `predict_risk()` espera receber um dicionário com os dados do paciente e deve retornar um dicionário com as chaves:
+- `prediction`: 0 para baixo risco, 1 para alto risco
+- `probability`: valor entre 0 e 100 indicando a probabilidade
+- `features`: lista de dicionários com as características e suas importâncias
+
+## Suporte
+
+Em caso de dúvidas ou problemas na execução, consulte a documentação oficial do Streamlit:
+https://docs.streamlit.io/
