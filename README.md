@@ -55,15 +55,8 @@ O sistema considera diversos fatores para a análise de risco:
 - 🗣️ **Melhoria na comunicação** e educação do paciente sobre saúde bucal
 - 💰 **Economia de custos** a longo prazo, evitando tratamentos mais complexos
 
-## ⚠️ Limitações e Considerações
-
-**IMPORTANTE:**
-- 🩺 O sistema deve ser utilizado como **ferramenta de apoio à decisão**, sempre em conjunto com a avaliação profissional do dentista
-- 📊 A precisão do modelo depende da **qualidade e quantidade dos dados** utilizados no treinamento
-- 🧪 O modelo atual apresenta uma **acurácia moderada** e está em constante desenvolvimento
 
 ## 🛠️ Tecnologias Utilizadas
-
 ### Principais ferramentas:
 ```
 🐍 Python       - Linguagem de programação principal
@@ -75,5 +68,3 @@ O sistema considera diversos fatores para a análise de risco:
 
 ---
 
-#### Nota de Implementação
-Este sistema é um projeto em desenvolvimento e deve ser usado apenas como ferramenta complementar na prática odontológica. Todas as decisões clínicas devem ser baseadas primordialmente no julgamento profissional do dentista.
