@@ -1,8 +1,13 @@
-Link para o video:
+-Link para o video:
+
+https://youtu.be/6RSvg2oBuFQ
 
 
-
-
-Link para o Repositório:
+-Link para o Repositório:
 
 https://github.com/felipetosma/Sprint-4-----DISRUPTIVE-ARCHITECTURES-IOT-IOB-GENERATIVE-IA.git
+
+
+-Comando para abrir interface gráfica:
+
+streamlit run app.py
