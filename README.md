@@ -68,6 +68,6 @@ O sistema considera diversos fatores para a análise de risco:
 
 ---
 Integrantes:
-Felipe Amador RM 553528
-Leonardo Oliveira RM 554024
+Felipe Amador RM 553528<br>
+Leonardo Oliveira RM 554024<br>
 Sara Sousa RM 552656
